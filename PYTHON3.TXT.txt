@@ -1,0 +1,30 @@
+import pandas as pd
+
+# Step 1: PYTHON ASSIGNMENT-3
+data = {
+    'Student': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'Math': [88, 76, 95, 70, 85],
+    'Science': [90, 80, 85, 75, 95],
+    'English': [85, 78, 92, 72, 88]
+}
+
+df = pd.DataFrame(data)
+
+# Step 2: Calculate average marks for each student
+df['Average'] = df[['Math', 'Science', 'English']].mean(axis=1)
+
+# Step 3: Find the top-performing student
+top_student = df.loc[df['Average'].idxmax()]
+
+# Step 4: Find the highest scorer in each subject
+highest_scorers = {
+    subject: df.loc[df[subject].idxmax(), 'Student']
+    for subject in ['Math', 'Science', 'English']
+}
+
+# Step 5: Display results
+print("Full Data:\n", df, "\n")
+print("Top-Performing Student:\n", top_student, "\n")
+print("Highest Scorer in Each Subject:")
+for subject, student in highest_scorers.items():
+    print(f"{subject}: {student}")
